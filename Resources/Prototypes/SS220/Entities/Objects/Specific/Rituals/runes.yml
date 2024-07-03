@@ -1,0 +1,24 @@
+- type: entity
+  id: RuneBase
+  parent: BaseStructure
+  name: Rune
+  description: Rune.
+  abstract: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    sprite: Effects/crayondecals.rsi
+    state: rune1
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+  - type: Damageable # ???
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Appearance
+  - type: StaticPrice
+    price: 50

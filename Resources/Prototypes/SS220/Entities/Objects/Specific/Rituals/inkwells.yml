@@ -1,0 +1,46 @@
+- type: entity
+  id: SOMENAME_inkwell
+  parent: BaseItem
+  name: SOMENAME_inkwell
+  description: SOMEDESC_inkwell
+  components:
+  - type: RCD    # Well, lets hope no one cares :clueless:
+    availablePrototypes:
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+  - type: LimitedCharges #TODO: somehow prohibit recharging with RCD ammo
+    maxCharges: 5
+    charges: 5
+  - type: UseDelay
+  - type: Sprite
+    sprite: Objects/Tools/rcd.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 100
+  - type: StaticPrice
+    price: 50
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.RcdUiKey.Key
