@@ -1,5 +1,6 @@
+# Check the D:\github\ss220\space-station-220\Resources\Prototypes\Magic\Fixtures\runes.yml for rune prototypes
 - type: entity
-  id: RuneBase
+  id: BaseRitualRune
   parent: BaseStructure
   name: Rune
   description: Rune.
@@ -16,7 +17,6 @@
     bodyType: Static
     canCollide: false
   - type: Fixtures
-  - type: Damageable # ???
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
   - type: Appearance
