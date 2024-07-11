@@ -5,6 +5,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
 using Robust.Shared.Timing;
+using Content.Shared.SS220.Rituals;
 
 namespace Content.Shared.RCD.Systems;
 
@@ -38,7 +39,8 @@ public sealed class RCDAmmoSystem : EntitySystem
 
         if (args.Target is not { Valid: true } target ||
             !HasComp<RCDComponent>(target) ||
-            !TryComp<LimitedChargesComponent>(target, out var charges))
+            !TryComp<LimitedChargesComponent>(target, out var charges) ||
+            HasComp<RunewriterComponent>(target)) // SS220 Rituals
             return;
 
         var user = args.User;

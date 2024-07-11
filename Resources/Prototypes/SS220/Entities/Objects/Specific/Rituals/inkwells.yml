@@ -4,27 +4,13 @@
   name: SOMENAME_inkwell
   description: SOMEDESC_inkwell
   components:
+  - type: Runewriter
   - type: RCD    # Well, lets hope no one cares :clueless:
     availablePrototypes:
-    - WallSolid
-    - FloorSteel
-    - Plating
-    - Catwalk
-    - Grille
-    - Window
-    - WindowDirectional
-    - WindowReinforcedDirectional
-    - ReinforcedWindow
-    - Airlock
-    - AirlockGlass
-    - Firelock
-    - TubeLight
-    - BulbLight
-    - LVCable
-    - MVCable
-    - HVCable
-    - CableTerminal
-  - type: LimitedCharges #TODO: somehow prohibit recharging with RCD ammo
+    - BaseRitualRune
+    - SupportRitualRune
+    - MasterRitualRune
+  - type: LimitedCharges
     maxCharges: 5
     charges: 5
   - type: UseDelay

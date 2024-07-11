@@ -1,0 +1,37 @@
+# BaseRune
+
+- type: rcd
+  id: BaseRitualRune
+  category: SupportRune
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  mode: ConstructObject
+  prototype: BaseRitualRune
+  cost: 1
+  delay: 2
+  collisionMask: TableMask # check what collision mask runes have
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: SupportRitualRune
+  category: SupportRune
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  mode: ConstructObject
+  prototype: SupportRitualRune
+  cost: 1
+  delay: 2
+  collisionMask: TableMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: MasterRitualRune
+  category: MasterRune
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  mode: ConstructObject
+  prototype: MasterRitualRune
+  cost: 1
+  delay: 2
+  collisionMask: TableMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2

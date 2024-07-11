@@ -15,10 +15,54 @@
   - type: InteractionOutline
   - type: Physics
     bodyType: Static
-    canCollide: false
   - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.1
+        mask: TableMask
+        layer: TableLayer
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
   - type: Appearance
   - type: StaticPrice
     price: 50
+
+
+- type: entity
+  id: SupportRitualRune
+  parent: BaseRitualRune
+  name: Руна помощи
+  description: Помогает ритуалить ёпты
+  components:
+  - type: SupportRitualRune
+    EfficiencyIncreaseMultiplier: 0.1
+    EfficiencyIncreaseFlatValue: 1
+    MaxChargeIncreaseMultiplier: 0.2
+    MaxChargeIncreaseFlatValue: 1
+    RechargeIncreaseMultiplier: 20
+    RechargeIncreaseFlatValue: 14
+    AdditionalTransmitRadius: 2
+
+- type: entity
+  id: MasterRitualRune
+  parent: BaseRitualRune
+  name: Мастер руна
+  description: А кто её слейв?..
+  components:
+  - type: SupportRitualRune
+    EfficiencyIncreaseMultiplier: 0.1
+    EfficiencyIncreaseFlatValue: 1
+    MaxChargeIncreaseMultiplier: 0.2
+    MaxChargeIncreaseFlatValue: 1
+    RechargeIncreaseMultiplier: 20
+    RechargeIncreaseFlatValue: 14
+    AdditionalTransmitRadius: 2
+  - type: RitualMasterRune
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: RitualSelectorBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
