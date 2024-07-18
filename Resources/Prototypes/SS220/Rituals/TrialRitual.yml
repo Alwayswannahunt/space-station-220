@@ -1,0 +1,19 @@
+- type: ritual
+  id: ritualTrail
+  name: Ritual Name # may need fields for them
+  desc: Ritual desc # to show in UI
+  RitualSteps:
+    common: trialRitualStep
+
+# - type: ritualStep
+#   id: trialRitualStep
+#   name: RitualStepName # all that is desc higher
+#   desc: RitualStepDesc # all that is desc higher
+#   RitualStates:
+#     enum.RitualStageEnum.inital:
+#       6:
+
+# - type: ritualState
+#   id: trialRitualState
+#   name: for what may i need it?
+#   desc: i need it?

@@ -3,16 +3,62 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.Graphics;
+using Content.Client.Message;
+using Content.Shared.SS220.Rituals;
+using Content.Shared.SS220.Rituals.RitualFactory;
 
 namespace Content.Client.SS220.Rituals.Ui;
 
 [GenerateTypedNameReferences]
 public sealed partial class RitualSelectorMenu : DefaultWindow
 {
+    public event Action<BaseButton.ButtonEventArgs, string>? OnRitualButtonPressed;
 
+    private MasterRuneParams _masterParams;
 
     public RitualSelectorMenu()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
+    }
+
+    public void UpdateValues(MasterRuneParams pars)
+    {
+        _masterParams = pars;
+        UpdateValues();
+    }
+
+    public void UpdateValues()
+    {
+        Recharge.SetMarkup($"Recharge: {_masterParams.Recharge} ");
+        Charge.SetMarkup($"Charge: {_masterParams.Charge} ");
+        MaxCharge.SetMarkup($"MaxCharge: {_masterParams.MaxCharge} ");
+        Efficency.SetMarkup($"Efficency: {_masterParams.Efficiency} ");
+    }
+
+    public void PopulateRitualButtons(List<string> ritualsProto)
+    {
+        RitualListContainer.Children.Clear();
+
+        var group = new ButtonGroup();
+        foreach (var proto in ritualsProto)
+        {
+            var ritButton = new RitualButton
+            {
+                Text = Loc.GetString(proto),
+                Id = proto,
+                Group = group,
+                StyleClasses = { "OpenBoth" }
+            };
+
+            ritButton.OnButtonDown += args => OnRitualButtonPressed?.Invoke(args, ritButton.Id);
+            RitualListContainer.AddChild(ritButton);
+        }
+    }
+
+
+    private sealed class RitualButton : Button
+    {
+        public string? Id;
     }
 }

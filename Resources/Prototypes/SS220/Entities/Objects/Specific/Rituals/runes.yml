@@ -6,6 +6,8 @@
   description: Rune.
   abstract: false
   components:
+  - type: BaseRitualRune
+    runeEdgeSize: 1
   - type: Transform
     noRot: true
   - type: Sprite
@@ -37,13 +39,13 @@
   description: Помогает ритуалить ёпты
   components:
   - type: SupportRitualRune
-    EfficiencyIncreaseMultiplier: 0.1
-    EfficiencyIncreaseFlatValue: 1
-    MaxChargeIncreaseMultiplier: 0.2
-    MaxChargeIncreaseFlatValue: 1
-    RechargeIncreaseMultiplier: 20
-    RechargeIncreaseFlatValue: 14
-    AdditionalTransmitRadius: 2
+    efficiencyIncreaseMultiplier: 0.1
+    efficiencyIncreaseFlatValue: 1
+    maxChargeIncreaseMultiplier: 0.2
+    maxChargeIncreaseFlatValue: 1
+    rechargeIncreaseMultiplier: 20
+    rechargeIncreaseFlatValue: 14
+    additionalTransmitRadius: 2
 
 - type: entity
   id: MasterRitualRune
@@ -52,17 +54,17 @@
   description: А кто её слейв?..
   components:
   - type: SupportRitualRune
-    EfficiencyIncreaseMultiplier: 0.1
-    EfficiencyIncreaseFlatValue: 1
-    MaxChargeIncreaseMultiplier: 0.2
-    MaxChargeIncreaseFlatValue: 1
-    RechargeIncreaseMultiplier: 20
-    RechargeIncreaseFlatValue: 14
-    AdditionalTransmitRadius: 2
+    efficiencyIncreaseMultiplier: 0.1
+    efficiencyIncreaseFlatValue: 1
+    maxChargeIncreaseMultiplier: 0.2
+    maxChargeIncreaseFlatValue: 1
+    rechargeIncreaseMultiplier: 20
+    rechargeIncreaseFlatValue: 14
+    additionalTransmitRadius: 2
   - type: RitualMasterRune
   - type: UserInterface
     interfaces:
-      enum.StoreUiKey.Key:
+      enum.RitualSelectorUiKey.Key:
         type: RitualSelectorBoundUserInterface
   - type: ActivatableUI
-    key: enum.StoreUiKey.Key
+    key: enum.RitualSelectorUiKey.Key
