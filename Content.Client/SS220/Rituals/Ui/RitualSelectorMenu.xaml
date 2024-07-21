@@ -3,10 +3,10 @@
     xmlns:x="https://Robust.io/"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'ritual-selector-ui-default-title'}"
-    MinSize="768 512"
+    MinSize="512 256"
     SetSize="768 512">
     <BoxContainer Orientation="Horizontal">
-        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <BoxContainer Margin="4,4,4,4" Orientation="Vertical" VerticalExpand="True">
         <LineEdit Name="SearchBar" Margin="4" PlaceHolder="Поиск" HorizontalExpand="True"/>
             <ScrollContainer
                 Name = "RitualSelectorScroll"
@@ -34,12 +34,12 @@
                     HorizontalExpand="True" />
                 <RichTextLabel
                     Name="MaxCharge"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Stretch"
                     Access="Public"
                     HorizontalExpand="True" />
                 <RichTextLabel
                     Name="Recharge"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Stretch"
                     Access="Public"
                     HorizontalExpand="True" />
                 <RichTextLabel
@@ -48,6 +48,23 @@
                     Access="Public"
                     HorizontalExpand="True" />
             </BoxContainer>
+            <ScrollContainer
+                Margin="4,4,4,4"
+                Name="RitualStepsScroll"
+                HScrollEnabled="False"
+                HorizontalExpand="True"
+                MinSize="100 256"
+                SizeFlagsStretchRatio="2"
+                VerticalExpand="True">
+                    <BoxContainer
+                        Name="RitualStepsContainer"
+                        MinSize="100 256"
+                        Orientation="Vertical"
+                        SizeFlagsStretchRatio="2"
+                        VerticalExpand="True">
+                        <!--  Listings are added here by code  -->
+                    </BoxContainer>
+            </ScrollContainer>
         </BoxContainer>
     </BoxContainer>
  </DefaultWindow>

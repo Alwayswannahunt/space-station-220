@@ -1,6 +1,6 @@
 using Content.Shared.SS220.Rituals;
-using Content.Shared.SS220.Rituals.RitualFactory;
 using JetBrains.Annotations;
+
 
 namespace Content.Client.SS220.Rituals.Ui;
 
@@ -15,7 +15,7 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
     [ViewVariables]
     private RitualSelectorMenu? _menu; // почему меню не общее для всех?
     private MasterRuneParams _masterParams;
-    private List<string>  _rirualListing = new();
+    private List<string> _rirualListing = new();
 
     protected override void Open()
     {
@@ -29,7 +29,7 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
         _menu.OnRitualButtonPressed += (args, ritualId) =>
         {
             SendMessage(new RitualPerformMessage(ritualId));
-
+            _menu.UpdateRitualStateListing(ritualId);
         };
 
     }
@@ -59,12 +59,4 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
         _menu?.Dispose();
     }
 
-    private void UpdateRitualListing()
-    {
-        if (_menu == null)
-            return;
-
-        var RitualListing = new HashSet<RitualFactoryPrototype>();
-
-    }
 }

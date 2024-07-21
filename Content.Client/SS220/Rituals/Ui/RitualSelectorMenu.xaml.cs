@@ -3,15 +3,19 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.Graphics;
+using Robust.Shared.Prototypes;
 using Content.Client.Message;
 using Content.Shared.SS220.Rituals;
 using Content.Shared.SS220.Rituals.RitualFactory;
+using System.Linq;
+using Serilog;
 
 namespace Content.Client.SS220.Rituals.Ui;
 
 [GenerateTypedNameReferences]
 public sealed partial class RitualSelectorMenu : DefaultWindow
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     public event Action<BaseButton.ButtonEventArgs, string>? OnRitualButtonPressed;
 
     private MasterRuneParams _masterParams;
@@ -53,6 +57,30 @@ public sealed partial class RitualSelectorMenu : DefaultWindow
 
             ritButton.OnButtonDown += args => OnRitualButtonPressed?.Invoke(args, ritButton.Id);
             RitualListContainer.AddChild(ritButton);
+        }
+    }
+
+    public void UpdateRitualStateListing(ProtoId<RitualFactoryPrototype> protoId) //<-- заменить на внутренную переменную!
+    {
+
+
+        var ritualProto = _prototypeManager.Index<RitualFactoryPrototype>(protoId);
+
+        if (ritualProto == null)
+        {
+            //Log.Error($"Called ritual proto - {ritualProto}, but it failed be indexed");
+            return;
+        }
+
+        if (ritualProto.RitualSteps == null)
+        {
+            //Log.Error($"Called ritual proto - {ritualProto}, but its RitualSteps is null");
+            return;
+        }
+        foreach (var ritualStepId in ritualProto.RitualSteps.Values)
+        {
+            var newRitualStepPanels = new RitualStepPanel(ritualStepId);
+            RitualStepsContainer.AddChild(newRitualStepPanels);
         }
     }
 

@@ -1,3 +1,4 @@
+// © SS220, An EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -6,7 +7,7 @@ namespace Content.Shared.SS220.Rituals.RitualFactory;
 [Prototype("ritual")] // ToDo get rid of Serializable in future
 [Serializable, NetSerializable]
 [DataDefinition]
-public sealed partial class RitualFactoryPrototype : IPrototype
+public sealed partial class RitualFactoryPrototype : IPrototype, ISerializationHooks
 {
     private ILocalizationManager _loc = default!;
 
@@ -24,7 +25,7 @@ public sealed partial class RitualFactoryPrototype : IPrototype
     public List<string>? SomeShit;
 
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public Dictionary<RitualQualityEnum, string>? RitualSteps;
+    public Dictionary<RitualQualityEnum, ProtoId<RitualStepPrototype>>? RitualSteps;
     /* in yaml
     SomeshutDict:
       enum.RitualQualityEnum.common:
@@ -50,12 +51,15 @@ public sealed partial class RitualFactoryPrototype : IPrototype
     [ViewVariables]
     public string? EditorSuffix => _loc.GetEntityData(ID).Suffix;
 
-
+    void ISerializationHooks.AfterDeserialization()
+    {
+        _loc = IoCManager.Resolve<ILocalizationManager>();
+    }
 }
 
 public enum RitualQualityEnum : byte
 {
-    common,
+    common = 1, // make them easier to read in yml
     signigicant,
     comprehensive,
     unstable

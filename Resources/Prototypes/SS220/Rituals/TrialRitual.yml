@@ -1,17 +1,21 @@
 - type: ritual
   id: ritualTrail
   name: Ritual Name # may need fields for them
-  desc: Ritual desc # to show in UI
-  RitualSteps:
-    common: trialRitualStep
+  description: Ritual desc # to show in UI
+  ritualSteps:
+    1: trialRitualStep
+    2: trialRitualStep
+    3: trialRitualStep
+    4: trialRitualStep
 
-# - type: ritualStep
-#   id: trialRitualStep
-#   name: RitualStepName # all that is desc higher
-#   desc: RitualStepDesc # all that is desc higher
-#   RitualStates:
-#     enum.RitualStageEnum.inital:
-#       6:
+
+- type: ritualStep
+  id: trialRitualStep
+  name: RitualStepName # all that is desc higher
+   # all that is desc higher
+  ritualStates:
+    enum.RitualStageEnum.inital:
+      6: aboba
 
 # - type: ritualState
 #   id: trialRitualState
