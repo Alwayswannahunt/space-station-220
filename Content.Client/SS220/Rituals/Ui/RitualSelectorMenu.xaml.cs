@@ -67,16 +67,11 @@ public sealed partial class RitualSelectorMenu : DefaultWindow
         var ritualProto = _prototypeManager.Index<RitualFactoryPrototype>(protoId);
 
         if (ritualProto == null)
-        {
-            //Log.Error($"Called ritual proto - {ritualProto}, but it failed be indexed");
-            return;
-        }
+            return; // TODO LOG IT
 
         if (ritualProto.RitualSteps == null)
-        {
-            //Log.Error($"Called ritual proto - {ritualProto}, but its RitualSteps is null");
-            return;
-        }
+            return; // TODO LOG IT
+
         foreach (var ritualStepId in ritualProto.RitualSteps.Values)
         {
             var newRitualStepPanels = new RitualStepPanel(ritualStepId);

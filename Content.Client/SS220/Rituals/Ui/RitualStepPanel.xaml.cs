@@ -16,6 +16,7 @@ public sealed partial class RitualStepPanel : Control
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private RitualStepPrototype? _shownRitualStepProto;
+    private bool _isNextStep = false;
     public RitualStepPanel(ProtoId<RitualStepPrototype> protoId)
     {
         IoCManager.InjectDependencies(this);
@@ -24,8 +25,14 @@ public sealed partial class RitualStepPanel : Control
 
         RitualStepName.Text = _shownRitualStepProto.Name;
         PerformRitualStepDescription.SetMessage(_shownRitualStepProto.Description);
-
+        SetButtonState(_isNextStep);
         // TODO RitualStepTexture = _shownRitualStepProto.UiIcon
 
+    }
+
+    private void SetButtonState(bool isNextStep)
+    {
+        _isNextStep = isNextStep;
+        PerformRitualStepName.Disabled = _isNextStep;
     }
 }

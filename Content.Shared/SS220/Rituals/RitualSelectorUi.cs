@@ -1,5 +1,3 @@
-using Content.Shared.Mobs;
-using Content.Shared.SS220.Rituals.RitualFactory;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.SS220.Rituals;
