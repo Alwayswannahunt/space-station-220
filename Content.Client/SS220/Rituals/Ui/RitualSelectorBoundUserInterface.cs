@@ -1,6 +1,7 @@
 using Content.Shared.SS220.Rituals;
 using JetBrains.Annotations;
-
+using Robust.Shared.Prototypes;
+using Content.Shared.SS220.Rituals.RitualFactory;
 
 namespace Content.Client.SS220.Rituals.Ui;
 
@@ -16,6 +17,7 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
     private RitualSelectorMenu? _menu; // почему меню не общее для всех?
     private MasterRuneParams _masterParams;
     private List<string> _rirualListing = new();
+    private RitualQualityEnum _ritualPlaceQuality = RitualQualityEnum.common;
 
     protected override void Open()
     {
@@ -28,8 +30,8 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
 
         _menu.OnRitualButtonPressed += (args, ritualId) =>
         {
-            SendMessage(new RitualPerformMessage(ritualId));
-            _menu.UpdateRitualStateListing(ritualId);
+            //SendMessage(new RitualPerformMessage(ritualId));
+            _menu.UpdateRitualStateListing(ritualId, _ritualPlaceQuality);
         };
 
     }
@@ -43,6 +45,7 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
             case RitualSelectorUpdateState msg:
                 _masterParams = msg.MasterParams;
                 _rirualListing = msg.RitualList;
+                _ritualPlaceQuality = RitualQualityEnum.common;
                 _menu?.UpdateValues(_masterParams); // someshit code btw
                 _menu?.PopulateRitualButtons(_rirualListing);
                 break;

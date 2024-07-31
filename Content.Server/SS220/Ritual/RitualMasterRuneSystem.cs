@@ -38,7 +38,7 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
 
     public void UpdateUserInterface(Entity<RitualMasterRuneComponent> masterRune)
     {
-        var allRitual = _prototypeManager.EnumeratePrototypes<RitualFactoryPrototype>();
+        var allRitual = _prototypeManager.EnumeratePrototypes<RitualPrototype>();
         var allRitualId = allRitual.Select(x => x.ID);
         // made logic of rituals list depend on user Components
         var runeParams = masterRune.Comp.ToMasterRuneParams();
@@ -49,6 +49,8 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
     private void OnMapInit(Entity<RitualMasterRuneComponent> ent, ref MapInitEvent args)
     {
         // ВОБЛЯ а нахуй я тут это оставил?..
+        // Шиз из прошлого, ты это оставил чтобы нельзя было к одной системе рун наспамить несколько мастер рун
+        // Шизофреник, баля, из настоящего, ты это себе пишешь, фрик...
     }
 
     private void BeforeActivatableUiOpen(Entity<RitualMasterRuneComponent> ent, ref BeforeActivatableUIOpenEvent args)
@@ -63,7 +65,7 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
     /// <param name="masterRuneEnt"></param>
     private void UpdateMasterRuneParams(Entity<RitualMasterRuneComponent> masterRuneEnt)
     {
-        if (TryComp<SupportRitualRuneComponent>(masterRuneEnt.Owner, out var supportComp) == false)
+        if (!TryComp<SupportRitualRuneComponent>(masterRuneEnt.Owner, out var supportComp))
             return;
         var masterRuneWithSupComp = new Entity<SupportRitualRuneComponent>(masterRuneEnt.Owner, supportComp);
 
@@ -73,7 +75,6 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
             cumSupParams += ent.Comp; // well well well, if it isn't the consequences of my actions
         masterRuneEnt.Comp.ApplySupportRitualRuneParams(cumSupParams);
     }
-
     /// <summary>
     /// Gets all entities which is reachable by ?RuneTransmition?. component needed because it has transmitionRadius in it
     /// </summary>
@@ -96,7 +97,7 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
                 _entityLookup.GetEntitiesIntersecting(Transform(ent).MapID, GetWorld2DBoxAroundSupRune(ent), newEntities);
 
                 foreach (var newEnt in newEntities) // maybe we have another way for this, but idk
-                    if (sortedEntities.ContainsKey(newEnt.Owner.Id) == false)
+                    if (!sortedEntities.ContainsKey(newEnt.Owner.Id))
                     {
                         sortedEntities.Add(newEnt.Owner.Id, newEnt);
                         anyEntityAdded = true;
@@ -105,7 +106,6 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
         }
         return new SortedDictionary<int, Entity<SupportRitualRuneComponent>>(sortedEntities);
     }
-
     private Box2 GetWorld2DBoxAroundSupRune(Entity<SupportRitualRuneComponent> ent)
     {
         var runeSelfSizeOffset = 0f;
@@ -120,6 +120,5 @@ public sealed partial class RitualMasterRuneSystem : EntitySystem
         Log.Warning($"--- BotomLeft: {runeWorldOffset - borderSizeVecNew} . TopRight {runeWorldOffset + borderSizeVecNew} ---");
         return new Box2(runeWorldOffset - borderSizeVecNew, runeWorldOffset + borderSizeVecNew);
     }
-
 }
 

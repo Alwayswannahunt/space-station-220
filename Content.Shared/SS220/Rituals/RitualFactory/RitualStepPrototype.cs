@@ -12,7 +12,6 @@ public sealed partial class RitualStepPrototype : IPrototype, ISerializationHook
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
-    public readonly Dictionary<RitualStageEnum, Dictionary<float, string>>? RitualStates;
 
     [DataField("name")]
     public string? SetName { get; private set; }
