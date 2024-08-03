@@ -7,7 +7,7 @@
       1: trialRitualStep
       2: trialRitualStep
       3: trialRitualStep
-    signigicant:
+    significant:
       1: trialRitualStep
       2: trialRitualStep
       3: trialRitualStep
@@ -21,9 +21,10 @@
       3: trialRitualStep
 
 
-- type: ritualStep
+- type: entity
   id: trialRitualStep
   name: RitualStepName # all that is desc higher
+  description: CheckRitualDesc
 
 # - type: ritualState
 #   id: trialRitualState

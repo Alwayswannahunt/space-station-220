@@ -31,7 +31,7 @@ public sealed class RitualSelectorBoundUserInterface : BoundUserInterface
         _menu.OnRitualButtonPressed += (args, ritualId) =>
         {
             //SendMessage(new RitualPerformMessage(ritualId));
-            _menu.UpdateRitualStateListing(ritualId, _ritualPlaceQuality);
+            _menu.UpdateRitualPhasePanels(ritualId, _ritualPlaceQuality);
         };
 
     }
