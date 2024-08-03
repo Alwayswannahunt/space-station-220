@@ -10,6 +10,7 @@ namespace Content.Client.SS220.Rituals.Ui;
 public sealed partial class RitualPhasePanel : Control
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
 
     private RitualStepPrototype? _shownRitualStepProto;
     public RitualPhasePanel(ProtoId<RitualStepPrototype> protoId, bool isNextStep)
@@ -18,13 +19,21 @@ public sealed partial class RitualPhasePanel : Control
         RobustXamlLoader.Load(this);
         _shownRitualStepProto = _prototypeManager.Index<RitualStepPrototype>(protoId);
 
-        RitualStepName.Text = _shownRitualStepProto.Name;
-        PerformRitualStepDescription.SetMessage(_shownRitualStepProto.Description);
+        RitualStepName.Text = GetLocalizedString(_shownRitualStepProto.Name);
+        PerformRitualStepDescription.SetMessage(GetLocalizedString(_shownRitualStepProto.Description));
         SetButtonState(isNextStep);
         // TODO RitualStepTexture = _shownRitualStepProto.UiIcon
     }
     private void SetButtonState(bool isNextStep)
     {
         PerformRitualStepName.Disabled = !isNextStep;
+    }
+    private string GetLocalizedString(string? localizationPath)
+    {
+        if (localizationPath == null)
+            return "";
+        if (_localizationManager.TryGetString(localizationPath, out var localizedString))
+            return localizedString;
+        return localizationPath;
     }
 }
