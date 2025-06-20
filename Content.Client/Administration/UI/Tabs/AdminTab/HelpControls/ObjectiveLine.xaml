@@ -1,0 +1,15 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:at="clr-namespace:Content.Client.Administration.UI.Tabs.AdminTab"
+    Margin="4"
+    MinSize="50 50">
+    <BoxContainer Orientation="Vertical">
+        <RichTextLabel Name="Name" Text="obj name"/>
+        <RichTextLabel Name="OwnerName" Text="obj owner"/>
+        <RichTextLabel Name="TargetName" Text="obj target"/>
+        <RichTextLabel Name="Progress" Text="obj progress"/>
+        <Button Name="OptionListButton" Text="obj option"/>
+    </BoxContainer>
+</Control>
