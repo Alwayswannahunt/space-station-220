@@ -16,7 +16,6 @@ public sealed partial class TryAddExperienceAdditionComponent : Component
     [DataField]
     public Dictionary<ExperienceAddSource, ExperienceAddSpecifier> Sources = new();
 
-    [AlwaysPushInheritance]
     [DataField]
     public ProtoId<ExperienceDefinitionPrototype>? DefinitionId;
 }

@@ -27,7 +27,6 @@ public sealed partial class ExperienceAdditionComponent : Component
     [DataField, AutoNetworkedField]
     public Dictionary<ExperienceAddSource, ExperienceAddSpecifier> Sources = new();
 
-    [AlwaysPushInheritance]
     [DataField, AutoNetworkedField]
     public ProtoId<ExperienceDefinitionPrototype>? DefinitionId;
 
